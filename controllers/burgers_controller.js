@@ -1,54 +1,59 @@
+// Using expres to perform our server operations
 var express = require("express");
 
+// Using routers the routes for the server
 var router = express.Router();
 
-// Import the model (cat.js) to use its database functions.
-var cat = require("../models/burger.js");
+// Import the model (burger.js) to use its database functions.
+var burger = require("../models/burger.js");
 
-// Create all our routes and set up logic within those routes where required.
-router.get("/", function(req, res) {
-  cat.all(function(data) {=============
-    var hbsObject = {
-      cats: data
+//===========================================================================================
+router.get("/", function(req, res) {//=== For this we need "get"
+  burger.all(function(data) {  // request function "route" to define data
+  var hbsObject = {
+      burgers: data
     };
     console.log(hbsObject);
     res.render("index", hbsObject);
   });
 });
+//===========================================================================================
 
-router.post("/", function(req, res) {
-  cat.create([======================
-    "name", "sleepy"
+// Create all our routes and set up logic within those routes where required.
+
+router.post("/", function(req, res) { //== Posting a client request through this route to 
+  burger.create([                     // create a "new burger object" with given params.
+    "burger_name", "devoured", "date"
   ], [
-    req.body.name, req.body.sleepy
+    req.body.burger_name, req.body.devoured, req.body.date
   ], function() {
-    res.redirect("/");
+    res.redirect("/");  //=== Now updating the response with the given "condition"
   });
-});
+}); 
 
-router.put("/:id", function(req, res) {
-  var condition = "id = " + req.params.id;
+router.put("/:id", function(req, res) { // Redirecting the route for "object burger" with 
+  var condition = "id = " + req.params.id; // a given "id" for "condition: devoured" 
 
   console.log("condition", condition);
 
-  cat.update({=================
-    sleepy: req.body.sleepy
+  burger.update({                //== Now updating the response with the given "condition"
+    devoured: req.body.devoured
   }, condition, function() {
     res.redirect("/");
   });
 });
 
-router.put("/:id", function(req, res) {
-  var condition = "id = " + req.body.id;
+//router.put("/:id", function(req, res) {  // Using the request "put" for a specific "condition"
+//  var condition = "id = " + req.body.id;  // with a given "id" for "delete" route.
 
-  console.log("condition", condition);
+//  console.log("condition", condition);
 
-  cat.delete({=====================
-    sleepy: req.body.id
-  }, condition, function() {
-    res.redirect("/");
-  });
-});
+//  burger.delete({             // === Now updating the response with the given "condition"
+//    devoured: req.body.id
+//  }, condition, function() {
+//    res.redirect("/");
+//  });
+//});
 
 
 // Export routes for server.js to use.

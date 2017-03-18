@@ -2,7 +2,8 @@
 var connection = require("../config/connection.js");
 
 // Helper function for SQL syntax.
-function printQuestionMarks(num) {
+function printQuestionMarks(num) {  // This function will help us to perform queries 
+                                   //with the sql database
   var arr = [];
 
   for (var i = 0; i < num; i++) {
@@ -24,10 +25,10 @@ function objToSql(ob) {
 
   return arr.toString();
 }
-
+//====================================================================================
 // Object for all our SQL statement functions.
 var orm = {
-  all: function(tableInput, cb) {================selectAll();
+  all: function(tableInput, cb) {    //====
     var queryString = "SELECT * FROM " + tableInput + ";";
     connection.query(queryString, function(err, result) {
       if (err) {
@@ -36,8 +37,12 @@ var orm = {
       cb(result);
     });
   },
-  create: function(table, cols, vals, cb) {===================insertOne();
-    var queryString = "INSERT INTO " + table;
+//====================================================================================
+
+// Creating a new object into the sql database
+
+  create: function(table, cols, vals, cb) {//=== Function for passing the query with 
+    var queryString = "INSERT INTO " + table; //a new object to the database 
 
     queryString += " (";
     queryString += cols.toString();
@@ -56,9 +61,10 @@ var orm = {
       cb(result);
     });
   },
-  // An example of objColVals would be {name: panther, sleepy: true}
-  update: function(table, objColVals, condition, cb) {===================updateOne();
-    var queryString = "UPDATE " + table;
+
+  // Using update function with a query for addition of new objects "update/put" where 
+  update: function(table, objColVals, condition, cb) { // objColVals would be  e.g.
+    var queryString = "UPDATE " + table;         // {burger_name: cheesy_smash, devoured:true}
 
     queryString += " SET ";
     queryString += objToSql(objColVals);
@@ -72,8 +78,29 @@ var orm = {
       }
       cb(result);
     });
+  },
+
+
+  // Using dlete function with a query for subtraction of already created objects where 
+  // objColVals would be {burger_name: cheesy_smash, devoured: true}
+  delete: function(table, objColVals, condition, cb) {
+    var queryString = " DELETE " + table;
+
+    queryString += " SET ";
+    queryString += objToSql(objColVals);
+    queryString += " WHERE ";
+    queryString += condition;
+
+    console.log(queryString);
+    connection.query(queryString, function(err, result) {
+      if (err) {
+        throw err;
+       }
+       cb(result);
+    });
   }
+
 };
 
-// Export the orm object for the model (cat.js).
+// Export the orm object for the model (burger.js).
 module.exports = orm;
