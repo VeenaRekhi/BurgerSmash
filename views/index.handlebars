@@ -14,7 +14,7 @@
                     {{this.burger_name}}
 
                     <form action="/{{this.id}}?_method=PUT" method="POST">
-                      <input type="hidden" name="devoured" value="true">
+                      <input type="hidden" name="devoured" value="true" required>
                       <button id="devour" type="submit">Devour It!</button>
                     </form>
                   </li>
@@ -36,11 +36,11 @@
 
               <div class="form-group">
                 <label for="burger">Burger Name:</label>
-                <input type="text" id="burger" name="burger_name">
+                <input type="text" id="burger" name="burger_name" required>
               </div>
 
               <div class="form-group">
-                <input type="hidden" name="devoured" value="0" checked><br>
+                <input type="hidden" name="devoured" value="0" checked required><br>
               </div>
 
               <button id="make" type="submit">Add A Burger</button>
@@ -61,7 +61,7 @@
                     {{this.burger_name}}
 
                     <form action="/{{this.id}}?_method=PUT" method="POST">
-                      <input type="hidden" name="devoured" value="false">
+                      <input type="hidden" name="devoured" value="false" required>
                       <button id="finish" type="submit"> Smash Me!!</button>
                     </form>
                   </li>

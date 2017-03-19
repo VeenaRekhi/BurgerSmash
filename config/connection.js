@@ -2,11 +2,14 @@
 var mysql = require("mysql");
 var connection;
 
+console.log("About to check for jaws");
 if (process.env.JAWSDB_URL)  {
+  console.log("Inside Jaws");
   connection = mysql.createConnection(process.env.JAWSDB_URL);
 } 
 else {
-  connection = mysql.createconnection ({
+  console.log("On local");
+  connection = mysql.createConnection ({
     host: "localhost",
     user: "root",
     password: "root",
