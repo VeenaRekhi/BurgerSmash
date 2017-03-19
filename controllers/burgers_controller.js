@@ -23,7 +23,7 @@ router.get("/", function(req, res) {//=== For this we need "get"
 
 router.post("/", function(req, res) { //== Posting a client request through this route to 
   burger.create([                     // create a "new burger object" with given params.
-    "burger_name", "devoured", "date"
+    "burger_name", "devoured", "createdAt"
   ], [
     req.body.burger_name, req.body.devoured, req.body.date
   ], function() {
