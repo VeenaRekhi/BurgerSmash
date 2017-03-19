@@ -31,6 +31,7 @@ router.post("/", function(req, res) { //== Posting a client request through this
   });
 }); 
 
+//====================================================================================
 router.put("/:id", function(req, res) { // Redirecting the route for "object burger" with 
   var condition = "id = " + req.params.id; // a given "id" for "condition: devoured" 
 
@@ -43,6 +44,7 @@ router.put("/:id", function(req, res) { // Redirecting the route for "object bur
   });
 });
 
+//====================================================================================
 //router.put("/:id", function(req, res) {  // Using the request "put" for a specific "condition"
 //  var condition = "id = " + req.body.id;  // with a given "id" for "delete" route.
 

@@ -1,6 +1,7 @@
 // Import MySQL connection.
 var connection = require("../config/connection.js");
 
+//====================================================================================
 // Helper function for SQL syntax.
 function printQuestionMarks(num) {  // This function will help us to perform queries 
                                    //with the sql database
@@ -13,6 +14,7 @@ function printQuestionMarks(num) {  // This function will help us to perform que
   return arr.toString();
 }
 
+//====================================================================================
 // Helper function for SQL syntax.
 function objToSql(ob) {
   var arr = [];
@@ -62,6 +64,7 @@ var orm = {
     });
   },
 
+//====================================================================================
   // Using update function with a query for addition of new objects "update/put" where 
   update: function(table, objColVals, condition, cb) { // objColVals would be  e.g.
     var queryString = "UPDATE " + table;         // {burger_name: cheesy_smash, devoured:true}
@@ -81,6 +84,7 @@ var orm = {
   },
 
 
+//====================================================================================
   // Using dlete function with a query for subtraction of already created objects where 
   // objColVals would be {burger_name: cheesy_smash, devoured: true}
   delete: function(table, objColVals, condition, cb) {

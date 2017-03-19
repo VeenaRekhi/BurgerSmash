@@ -17,6 +17,7 @@ var burger = {
       cb(res);
     });
   },
+//====================================================================================
 
   // Function where we are processing the "update == put" request from client side.
   update: function(objColVals, condition, cb) {
@@ -25,6 +26,7 @@ var burger = {
     });
   },
 
+//====================================================================================
   // Function where we are processing the "done == delete" request from client side.
   delete: function(condition, cb) {
     orm.delete("burgers", condition, function(res) {
@@ -32,6 +34,7 @@ var burger = {
     });
   }
 };
+//====================================================================================
 
 // Export the database functions for the controller (catsController.js).
 module.exports = burger;
