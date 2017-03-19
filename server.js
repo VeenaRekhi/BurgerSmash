@@ -8,6 +8,7 @@ var port = 3000;   // setting up port at localhost 3000.
 
 var app = express();  // setting up variable app with express server functioning
 
+app.set('port', (process.env.PORT || 3000));
 // Serving static content for the app(program) from the "public" directory(client side) 
 //to the Application directory(server side).
 
