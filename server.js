@@ -4,7 +4,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 
-var port = 3000;   // setting up port at localhost 3000.
+var port = process.env.PORT || 3000;   // setting up port at localhost 3000.
 
 var app = express();  // setting up variable app with express server functioning
 
